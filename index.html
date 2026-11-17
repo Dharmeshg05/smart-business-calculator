@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="A fast, responsive business calculator for GST, profit and loss, discounts, and profit margins.">
+  <title>Smart Business Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Smart Business Calculator home">
+        <span class="brand-mark">SB</span>
+        <span>Smart<span class="brand-light">Business</span></span>
+      </a>
+      <div class="top-actions">
+        <span class="status"><span class="status-dot"></span> Free business tools</span>
+        <button class="icon-button" id="themeToggle" type="button" aria-label="Switch color theme" title="Switch theme">
+          <span id="themeIcon">☾</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="eyebrow"><span class="eyebrow-line"></span> SIMPLE TOOLS. SMARTER DECISIONS.</div>
+        <h1>Your business numbers,<br><span>made simple.</span></h1>
+        <p class="hero-copy">Quick, reliable calculations for everyday business decisions. No sign-up. No complexity. Just the numbers you need.</p>
+        <div class="hero-meta">
+          <span>✓ 4 practical calculators</span>
+          <span>✓ Works on mobile</span>
+          <span>✓ 100% free</span>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Business calculators">
+        <aside class="sidebar">
+          <div class="side-label">TOOLS</div>
+          <button class="nav-item active" data-tool="gst" type="button"><span class="nav-icon">%</span><span><strong>GST Calculator</strong><small>Tax breakdown</small></span><span class="nav-arrow">›</span></button>
+          <button class="nav-item" data-tool="profit" type="button"><span class="nav-icon">↗</span><span><strong>Profit &amp; Loss</strong><small>Know your earnings</small></span><span class="nav-arrow">›</span></button>
+          <button class="nav-item" data-tool="discount" type="button"><span class="nav-icon">％</span><span><strong>Discount</strong><small>Sale price finder</small></span><span class="nav-arrow">›</span></button>
+          <button class="nav-item" data-tool="margin" type="button"><span class="nav-icon">◉</span><span><strong>Profit Margin</strong><small>Check your margin</small></span><span class="nav-arrow">›</span></button>
+          <div class="sidebar-note"><span class="note-icon">✦</span><div><strong>Made for everyday work</strong><p>Handy calculations for freelancers, shop owners and small businesses.</p></div></div>
+        </aside>
+
+        <section class="calculator-panel">
+          <div class="panel-heading">
+            <div>
+              <div class="panel-kicker" id="toolKicker">TAX &amp; PRICING</div>
+              <h2 id="toolTitle">GST Calculator</h2>
+              <p id="toolDescription">Calculate GST and see the complete price breakdown.</p>
+            </div>
+            <span class="panel-badge">INR ₹</span>
+          </div>
+
+          <form id="gstForm" class="tool-form tool-view active" novalidate>
+            <div class="field">
+              <label for="gstAmount">Amount (₹)</label>
+              <div class="input-wrap"><span class="input-prefix">₹</span><input id="gstAmount" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 10,000" value="10000"></div>
+            </div>
+            <div class="field-grid">
+              <div class="field">
+                <label for="gstRate">GST rate</label>
+                <select id="gstRate"><option value="5">5%</option><option value="12">12%</option><option value="18" selected>18%</option><option value="28">28%</option></select>
+              </div>
+              <div class="field">
+                <label for="gstMode">Amount type</label>
+                <select id="gstMode"><option value="exclusive">Add GST</option><option value="inclusive">GST included</option></select>
+              </div>
+            </div>
+            <button class="primary-button" type="submit">Calculate GST <span>→</span></button>
+          </form>
+
+          <form id="profitForm" class="tool-form tool-view" novalidate>
+            <div class="field-grid">
+              <div class="field"><label for="costPrice">Cost price (₹)</label><div class="input-wrap"><span class="input-prefix">₹</span><input id="costPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 500"></div></div>
+              <div class="field"><label for="sellingPrice">Selling price (₹)</label><div class="input-wrap"><span class="input-prefix">₹</span><input id="sellingPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 750"></div></div>
+            </div>
+            <button class="primary-button" type="submit">Calculate profit / loss <span>→</span></button>
+          </form>
+
+          <form id="discountForm" class="tool-form tool-view" novalidate>
+            <div class="field-grid">
+              <div class="field"><label for="originalPrice">Original price (₹)</label><div class="input-wrap"><span class="input-prefix">₹</span><input id="originalPrice" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 2,000"></div></div>
+              <div class="field"><label for="discountRate">Discount (%)</label><div class="input-wrap"><input id="discountRate" type="number" min="0" max="100" step="0.01" inputmode="decimal" placeholder="e.g. 15"><span class="input-suffix">%</span></div></div>
+            </div>
+            <button class="primary-button" type="submit">Calculate discount <span>→</span></button>
+          </form>
+
+          <form id="marginForm" class="tool-form tool-view" novalidate>
+            <div class="field-grid">
+              <div class="field"><label for="revenue">Revenue / selling price (₹)</label><div class="input-wrap"><span class="input-prefix">₹</span><input id="revenue" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 1,000"></div></div>
+              <div class="field"><label for="totalCost">Total cost (₹)</label><div class="input-wrap"><span class="input-prefix">₹</span><input id="totalCost" type="number" min="0" step="0.01" inputmode="decimal" placeholder="e.g. 650"></div></div>
+            </div>
+            <button class="primary-button" type="submit">Calculate margin <span>→</span></button>
+          </form>
+
+          <div class="result-area" id="resultArea" aria-live="polite">
+            <div class="result-placeholder"><span class="placeholder-icon">✦</span><div><strong>Your result will appear here</strong><p>Enter your values above and select Calculate to get started.</p></div></div>
+          </div>
+          <p class="disclaimer">For quick estimates only. Please verify tax rates and accounting figures for your specific situation.</p>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>© <span id="year"></span> Smart Business Calculator</span>
+      <span>Built with care for independent businesses.</span>
+      <a href="https://github.com/Dharmeshg05/smart-business-calculator" target="_blank" rel="noopener noreferrer">View on GitHub ↗</a>
+    </footer>
+  </div>
+</body>
+</html>
